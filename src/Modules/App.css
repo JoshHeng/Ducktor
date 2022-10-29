@@ -1,0 +1,47 @@
+.app {
+  background-color: #dbfbfa;
+
+  height: 700px;
+  text-align: center;
+
+  position: relative;
+}
+
+.app.asleep {
+  background-color: #000000;
+
+  color: white;
+}
+
+.app.asleep button {
+  color: white;
+  border-color: white;
+}
+
+header {
+  padding: 1rem;
+  display: flex;
+}
+
+header h1 {
+  margin: 0;
+  flex-grow: 1;
+}
+
+header button {
+  font-size: 1em;
+  background: none;
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  width: 7rem;
+}
+
+header button svg {
+  margin-right: 0.3rem;
+}
+
+.duck img {
+  width: 24rem;
+}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.scss';
+import './App.css';
 import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
 
