@@ -1,8 +1,8 @@
-import './Customisation.css';
+import './DuckCustomisation.css';
 import duckImages from '../duckImages.json';
 import {duckType} from './DuckType';
 
-function CustomDuck({setCustomDuckType, awake, currentDuck}: {
+function DuckCustomisation({setCustomDuckType, awake, currentDuck}: {
     setCustomDuckType: (_duckType:duckType) => void;
     awake: boolean;
     currentDuck: duckType;
@@ -21,4 +21,4 @@ function CustomDuck({setCustomDuckType, awake, currentDuck}: {
     )
 }
 
-export default CustomDuck;
+export default DuckCustomisation;
