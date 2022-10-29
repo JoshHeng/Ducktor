@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "version": "0.1",
+
+  "short_name": "❤ ️Ducktor",
+  "name": "❤ ️Ducktor",
+  "description": "Quack quack",
+
+
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png"
+  },
+
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
