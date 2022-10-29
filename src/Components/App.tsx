@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import './App.css';
 import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
+import {duckType} from './DuckType';
+import CustomDuck from './Customisation';
 
 function App() {
     const [ awake, setAwake ] = useState(true);
+    const [ customDuckType, setCustomDuckType ] = useState<duckType>("none");
 
     const toggleAwake = () => {
         setAwake((_awake) => {
@@ -26,8 +29,10 @@ function App() {
 
             </header>
             <div className="duck">
-                <img src={`/ducks/${awake ? duckImages.none.awake : duckImages.none.asleep}`} alt="Duck" />
+                <img src={`/ducks/${awake ? duckImages[customDuckType].awake : duckImages[customDuckType].asleep}`} alt="Duck" />
             </div>
+
+            <CustomDuck currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
         </div>
     );
 }
