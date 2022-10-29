@@ -1,33 +1,3 @@
-.app {
-  background-color: #dbfbfa;
-
-  height: 700px;
-  text-align: center;
-
-  position: relative;
-}
-
-.app.asleep {
-  background-color: #000000;
-
-  color: white;
-}
-
-.app.asleep button {
-  color: white;
-  border-color: white;
-}
-
-header {
-  padding: 1rem;
-  display: flex;
-}
-
-header h1 {
-  margin: 0;
-  flex-grow: 1;
-}
-
 .customisation {
   display: flex;
   justify-content: center;

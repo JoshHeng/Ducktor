@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
-import customDuck from './Customisation';
 import {duckType} from './DuckType';
 import CustomDuck from './Customisation';
 
