@@ -6,6 +6,25 @@
     bottom: 1rem;
 
     background-color: white;
+    color: black;
+}
+
+.input {
+    margin-bottom: 1.2rem;
+}
+
+.input label {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+.input input, .input textarea {
+    width: 80%;
+    font-size: 1em;
+    border: 0.08rem solid #ccc;
+
+    font-family: sans-serif;
+
+    padding: 0.3rem 0.6rem;
 }
 
 .altTextFilterStrings {
