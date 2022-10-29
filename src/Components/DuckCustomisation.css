@@ -1,6 +1,9 @@
 .customisation {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  max-width: 15rem;
+  margin: 0 auto;
 }
 
 .customDuckButton {
