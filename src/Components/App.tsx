@@ -1,17 +1,32 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
 import DuckCustomisation from './DuckCustomisation';
 import CustomisationModal from './CustomisationModal';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import {selectAwake, selectDuckType, toggleAwake} from '../redux/settingsSlice';
+import {initialiseValues, selectAwake, selectDuckType, toggleAwake} from '../redux/settingsSlice';
 
 function App() {
     const dispatch = useAppDispatch();
     const awake = useAppSelector(selectAwake);
     const duckType = useAppSelector(selectDuckType);
     const [ showCustomisationModal, setShowCustomisationModal ] = useState(false);
+
+    useEffect(() => {
+        let mounted = true;
+
+        chrome?.storage?.sync.get(['settings.awake', 'settings.duckType'], (values: any) => {
+            if (mounted && values) {
+                dispatch(initialiseValues({
+                    awake: values['settings.awake'],
+                    duckType: values['settings.duckType'],
+                }));
+            }
+        });
+
+        return () => { mounted = false; }
+    }, []);
 
     return (
         <div className={`app ${awake ? 'awake' : 'asleep'}`} style={{ backgroundImage: awake ? 'url("/ducks/BackgroundDay.png")' : 'url("/ducks/BackgroundNight.png")'}}>

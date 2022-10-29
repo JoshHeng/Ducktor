@@ -22,15 +22,27 @@ export const settingsSlice = createSlice({
                 value: !state.awake,
             }).then(() => {});
 
+            chrome?.storage?.sync.set({
+                'settings.awake': !state.awake,
+            }).then(() => {});
+
             state.awake = !state.awake;
         },
         setDuckType: (state, action: PayloadAction<DuckType>) => {
+            chrome?.storage?.sync.set({
+                'settings.duckType': action.payload,
+            }).then(() => {});
+
             state.duckType = action.payload;
         },
-    }
-})
+        initialiseValues: (state, action: PayloadAction<SettingsState>) => {
+            state.awake = action.payload.awake === undefined ? true : action.payload.awake;
+            state.duckType = action.payload.duckType || 'none';
+        },
+    },
+});
 
-export const { toggleAwake, setDuckType } = settingsSlice.actions;
+export const { toggleAwake, setDuckType, initialiseValues } = settingsSlice.actions;
 export const selectAwake = (state: RootState) => state.settings.awake;
 export const selectDuckType = (state: RootState) => state.settings.duckType;
 
