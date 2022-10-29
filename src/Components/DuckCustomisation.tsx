@@ -1,18 +1,19 @@
 import './DuckCustomisation.css';
 import duckImages from '../duckImages.json';
-import {duckType} from './DuckType';
+import {DuckType} from '../types/DuckType';
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
+import {selectAwake, selectDuckType, setDuckType} from "../redux/settingsSlice";
 
-function DuckCustomisation({setCustomDuckType, awake, currentDuck}: {
-    setCustomDuckType: (_duckType:duckType) => void;
-    awake: boolean;
-    currentDuck: duckType;
-}) {
-    const duckImageArray:duckType[] = Object.keys(duckImages) as duckType[];
+export default function DuckCustomisation() {
+    const dispatch = useAppDispatch();
+    const awake = useAppSelector(selectAwake);
+    const duckType = useAppSelector(selectDuckType);
+    const duckImageArray:DuckType[] = Object.keys(duckImages) as DuckType[];
 
     return (
         <div className="customisation">
             {duckImageArray.map((name) => (
-                <button key={name} className={`customDuckButton ${currentDuck === name ? "selectedCustomDuckButton" : ""}`} onClick={() => setCustomDuckType(name)}>
+                <button key={name} className={`customDuckButton ${duckType === name ? "selectedCustomDuckButton" : ""}`} onClick={() => dispatch(setDuckType(name))}>
                     <img src={`/ducks/${awake ? duckImages[name].awake : duckImages[name].asleep}`} alt="Duck quack" />
                 </button>
             ))}
@@ -20,5 +21,3 @@ function DuckCustomisation({setCustomDuckType, awake, currentDuck}: {
         </div>
     )
 }
-
-export default DuckCustomisation;
