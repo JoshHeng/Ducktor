@@ -18,7 +18,6 @@ export default function DuckCustomisation() {
                     <img src={`/ducks/${awake ? duckImages[name].awake : duckImages[name].asleep}`} alt="Duck quack" />
                 </button>
             ))}
-            
         </div>
     )
 }
