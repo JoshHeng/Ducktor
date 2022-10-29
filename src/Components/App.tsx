@@ -3,7 +3,7 @@ import './App.css';
 import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
 import {duckType} from './DuckType';
-import CustomDuck from './Customisation';
+import DuckCustomisation from './DuckCustomisation';
 
 function App() {
     const [ awake, setAwake ] = useState(true);
@@ -14,7 +14,7 @@ function App() {
             chrome?.runtime?.sendMessage({
                 action: 'setAwake',
                 value: !_awake,
-            }).then(r => {});
+            }).then(() => {});
 
             return !_awake;
         });
@@ -32,7 +32,7 @@ function App() {
                 <img src={`/ducks/${awake ? duckImages[customDuckType].awake : duckImages[customDuckType].asleep}`} alt="Duck" />
             </div>
 
-            <CustomDuck currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
+            <DuckCustomisation currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
         </div>
     );
 }
