@@ -26,7 +26,7 @@ export default function CustomisationModal() {
 
             <div>
                 <label htmlFor="altTextFilterStrings">Image Text Filter (newline separated)</label>
-                <textarea rows={6} id="altTextFilterStrings" onChange={onAltTextFilterChange} value={altTextFilterStrings}></textarea>
+                <textarea className="textBox" rows={6} id="altTextFilterStrings" onChange={onAltTextFilterChange} value={altTextFilterStrings}></textarea>
             </div>
         </div>
     )
