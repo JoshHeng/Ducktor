@@ -43,6 +43,17 @@ header button svg {
   margin-right: 0.3rem;
 }
 
-.duck img {
+.duckImage {
+  height: 24rem;
+  width: 24rem;
+  position: relative;
+  margin: 0 auto;
+}
+.duckImage img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   width: 24rem;
 }

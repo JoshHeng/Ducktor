@@ -1,22 +1,27 @@
 {
   "none": {
     "awake": "Duck.png",
-    "asleep": "DuckSleep.png"
+    "asleep": "DuckSleep.png",
+    "hat": false
   },
   "hacker": {
     "awake": "DuckHacker.png",
-    "asleep": "DuckHackerSleep.png"
+    "asleep": "DuckHackerSleep.png",
+    "hat": "Hacker.png"
   },
   "pirate": {
     "awake": "DuckPirate.png",
-    "asleep": "DuckPirateSleep.png"
+    "asleep": "DuckPirateSleep.png",
+    "hat": "Pirate.png"
   },
   "pumpkin": {
     "awake": "DuckPumpkin.png",
-    "asleep": "DuckPumpkinSleep.png"
+    "asleep": "DuckPumpkinSleep.png",
+    "hat": "Pumpkin.png"
   },
   "witch": {
     "awake": "DuckWitch.png",
-    "asleep": "DuckWitchSleep.png"
+    "asleep": "DuckWitchSleep.png",
+    "hat": "Witch.png"
   }
 }
