@@ -18,7 +18,7 @@ export default function CustomisationModal() {
         }
 
         return () => { mounted = false };
-    }, [])
+    }, []);
 
     return (
         <div className="customisationModal">
