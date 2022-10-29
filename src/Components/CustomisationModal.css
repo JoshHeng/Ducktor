@@ -1,0 +1,14 @@
+.customisationModal {
+    position: absolute;
+    left: 1rem;
+    top: 4rem;
+    right: 1rem;
+    bottom: 1rem;
+
+    background-color: white;
+}
+
+.altTextFilterStrings {
+    display: flex;
+    flex-direction: column;
+}
