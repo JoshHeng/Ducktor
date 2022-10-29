@@ -4,10 +4,12 @@ import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
 import {duckType} from './DuckType';
 import DuckCustomisation from './DuckCustomisation';
+import CustomisationModal from "./CustomisationModal";
 
 function App() {
     const [ awake, setAwake ] = useState(true);
     const [ customDuckType, setCustomDuckType ] = useState<duckType>("none");
+    const [ showCustomisationModal, setShowCustomisationModal ] = useState(false);
 
     const toggleAwake = () => {
         setAwake((_awake) => {
@@ -25,7 +27,7 @@ function App() {
             <header>
                 <button onClick={toggleAwake}>{ awake ? <FaMoon /> : <FaSun/>}{ awake ? 'Sleep' : 'Wake' }</button>
                 <h1>Ducky</h1>
-                <button style={{ marginLeft: 'auto' }}><FaPaintBrush/>Customise</button>
+                <button style={{ marginLeft: 'auto' }} onClick={() => setShowCustomisationModal((_value) => !_value)}><FaPaintBrush/>{ showCustomisationModal ? 'Back' : 'Customise' }</button>
 
             </header>
             <div className="duck">
@@ -33,6 +35,7 @@ function App() {
             </div>
 
             <DuckCustomisation currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
+            { showCustomisationModal && <CustomisationModal /> }
         </div>
     );
 }
