@@ -23,5 +23,15 @@
     "awake": "DuckWitch.png",
     "asleep": "DuckWitchSleep.png",
     "hat": "Witch.png"
+  },
+  "mario": {
+    "awake": "DuckMario.png",
+    "asleep": "DuckMarioSleep.png",
+    "hat": "Mario.png"
+  },
+  "halo": {
+    "awake": "DuckHalo.png",
+    "asleep": "DuckHaloSleep.png",
+    "hat": "Halo.png"
   }
 }
