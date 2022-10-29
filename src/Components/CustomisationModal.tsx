@@ -33,7 +33,7 @@ export default function CustomisationModal() {
 
             <div className="input">
                 <label htmlFor="duckName">Duck Name</label>
-                <input type="text" required minLength={1} maxLength={9} id="duckName" onChange={onDuckNameChange} value={duckName} placeholder="Ducky"></input>
+                <input type="text" required minLength={1} maxLength={10} id="duckName" onChange={onDuckNameChange} value={duckName} placeholder="Ducky"></input>
             </div>
 
             <div className="input">
