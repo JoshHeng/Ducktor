@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import './DuckCustomisation.css';
 import duckImages from '../duckImages.json';
 import {DuckType} from '../types/DuckType';
@@ -8,7 +9,7 @@ export default function DuckCustomisation() {
     const dispatch = useAppDispatch();
     const awake = useAppSelector(selectAwake);
     const duckType = useAppSelector(selectDuckType);
-    const duckImageArray:DuckType[] = Object.keys(duckImages) as DuckType[];
+    const duckImageArray:DuckType[] = useMemo(() => Object.keys(duckImages) as DuckType[], []);
 
     return (
         <div className="customisation">
