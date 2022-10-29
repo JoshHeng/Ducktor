@@ -6,7 +6,7 @@ function alt_filter(bad_words) {
     var allImages = document.getElementsByTagName("img");
     for (var i = 0, len = allImages.length; i < len; ++i) {
         if (allImages[i].alt !== "") {
-            for (var j = 0, length = bad_words.length; i < length; ++i) {
+            for (var j = 0, length = bad_words.length; j < length; ++j) {
                 
                 if (allImages[i].alt.toLowerCase().includes(bad_words[j])) {
                     allImages[i].src = "";
