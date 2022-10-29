@@ -2,7 +2,7 @@ const alarmName = "screenTimer";
 
 function setAlarm() {
     chrome.alarms.create(alarmName, {delayInMinutes: 0.1, periodInMinutes: 0.2} );
-    chrome?.storage?.sync.set({ "alarmMsg": "You've spent x mins in Chrome - make sure to take a break!" }, function(){
+    chrome?.storage?.sync.set({ alarmName: "You've spent x mins in Chrome - make sure to take a break!" }, function(){
         //  A data saved callback omg so fancy
     });
 
@@ -28,16 +28,17 @@ function setAlarm() {
 
 function cancelAlarm() {
     chrome.alarms.clear(alarmName);
+    console.log("Alarm cancelled");
 }
 
-function AlarmConfigure() {
+function TimerConfigure() {
 
     return (
-        <div className="alarmConfigure">
+        <div className="timerConfigure">
             <button onClick={setAlarm}>Set Alarm</button>
             <button onClick={cancelAlarm}>Cancel Alarm</button>
         </div>
     );
 }
 
-export default AlarmConfigure;
+export default TimerConfigure;

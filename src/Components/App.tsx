@@ -4,7 +4,7 @@ import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 import duckImages from '../duckImages.json';
 import {duckType} from './DuckType';
 import DuckCustomisation from './DuckCustomisation';
-import AlarmConfigure from './AlarmConfigure';
+import TimerConfigure from './TimerConfigure';
 
 function App() {
     const [ awake, setAwake ] = useState(true);
@@ -45,7 +45,7 @@ function App() {
 
             <DuckCustomisation currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
 
-            <AlarmConfigure />
+            <TimerConfigure />
         </div>
     );
 }
