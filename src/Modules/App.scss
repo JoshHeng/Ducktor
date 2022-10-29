@@ -5,6 +5,17 @@
   text-align: center;
 
   position: relative;
+
+  &.asleep {
+    background-color: #000000;
+
+    color: white;
+
+    button {
+      color: white;
+      border-color: white;
+    }
+  }
 }
 
 header {

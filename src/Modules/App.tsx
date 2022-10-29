@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.scss';
-import {FaPaintBrush, FaSun} from 'react-icons/fa';
+import {FaPaintBrush, FaSun, FaMoon} from 'react-icons/fa';
 
 function App() {
+    const [ awake, setAwake ] = useState(true);
+
+    const toggleAwake = () => {
+        setAwake((_awake) => !_awake);
+    }
+
     return (
-        <div className="app">
+        <div className={`app ${awake ? 'awake' : 'asleep'}`}>
             <header>
-                <button><FaSun/>Wake</button>
+                <button onClick={toggleAwake}>{ awake ? <FaMoon /> : <FaSun/>}{ awake ? 'Sleep' : 'Wake' }</button>
                 <h1>Ducky</h1>
                 <button style={{ marginLeft: 'auto' }}><FaPaintBrush/>Customise</button>
 
