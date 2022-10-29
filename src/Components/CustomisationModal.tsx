@@ -6,11 +6,10 @@ import {selectDuckName, setName} from "../redux/settingsSlice";
 export default function CustomisationModal() {
     const dispatch = useAppDispatch();
     const duckName = useAppSelector(selectDuckName);
-
-    const [ altTextFilterStrings, setAltTextFilterStrings ] = useState('');
-    const onAltTextFilterChange = (event: any) => {
-        setAltTextFilterStrings(event.target.value);
-        chrome?.storage?.sync.set({ 'altTextFilterStrings': event.target.value }).then(() => {});
+    const [ TextFilterStrings, setTextFilterStrings ] = useState('');
+    const onTextFilterChange = (event: any) => {
+        setTextFilterStrings(event.target.value);
+        chrome?.storage?.sync.set({ 'TextFilterStrings': event.target.value }).then(() => {});
     }
     const onDuckNameChange = (event: any) => {
         dispatch(setName(event.target.value));
@@ -20,8 +19,8 @@ export default function CustomisationModal() {
         let mounted = true;
 
         if (chrome?.storage) {
-            chrome?.storage?.sync.get('altTextFilterStrings', (result: any) => {
-                if (mounted && result?.altTextFilterStrings) setAltTextFilterStrings(result?.altTextFilterStrings);
+            chrome?.storage?.sync.get('TextFilterStrings', (result: any) => {
+                if (mounted && result?.TextFilterStrings) setTextFilterStrings(result?.TextFilterStrings);
             });
         }
 
@@ -38,8 +37,8 @@ export default function CustomisationModal() {
             </div>
 
             <div className="input">
-                <label htmlFor="altTextFilterStrings">Image Alt Text Filter</label>
-                <textarea className="textBox" rows={6} id="altTextFilterStrings" onChange={onAltTextFilterChange} value={altTextFilterStrings} placeholder="Quack"></textarea>
+                <label htmlFor="TextFilterStrings">Image Text Filter</label>
+                <textarea className="textBox" rows={6} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack"></textarea>
             </div>
         </div>
     )
