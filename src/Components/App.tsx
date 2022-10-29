@@ -30,8 +30,10 @@ function App() {
                 <button style={{ marginLeft: 'auto' }} onClick={() => setShowCustomisationModal((_value) => !_value)}><FaPaintBrush/>{ showCustomisationModal ? 'Back' : 'Customise' }</button>
 
             </header>
-            <div className="duck">
-                <img src={`/ducks/${awake ? duckImages[customDuckType].awake : duckImages[customDuckType].asleep}`} alt="Duck" />
+            <div className="duckImage">
+                <img src="/ducks/DuckShadow.png" alt="Duck Shadow" />
+                <img src={`/ducks/${awake ? 'Duck.gif' : 'DuckSleep.gif'}`} alt="Duck" />
+                { duckImages[customDuckType].hat && <img src={`/hats/${duckImages[customDuckType].hat}`} alt="Duck Hat" /> }
             </div>
 
             <DuckCustomisation currentDuck={customDuckType} awake={awake} setCustomDuckType={setCustomDuckType} />
