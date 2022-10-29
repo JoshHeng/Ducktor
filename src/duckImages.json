@@ -1,0 +1,22 @@
+{
+  "none": {
+    "awake": "Duck.png",
+    "asleep": "DuckSleep.png"
+  },
+  "hacker": {
+    "awake": "DuckHacker.png",
+    "asleep": "DuckHackerSleep.png"
+  },
+  "pirate": {
+    "awake": "DuckPirate.png",
+    "asleep": "DuckPirateSleep.png"
+  },
+  "pumpkin": {
+    "awake": "DuckPumpkin.png",
+    "asleep": "DuckPumpkinSleep.png"
+  },
+  "witch": {
+    "awake": "DuckWitch.png",
+    "asleep": "DuckWitchSleep.png"
+  }
+}

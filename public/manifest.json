@@ -12,6 +12,10 @@
     "default_icon": "ducks/DuckOn.png"
   },
 
+  "background": {
+    "service_worker": "background.js"
+  },
+
   "permissions": [
     "activeTab"
   ]
