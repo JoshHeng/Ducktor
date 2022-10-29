@@ -16,6 +16,14 @@
     "service_worker": "background.js"
   },
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle", 
+      "js": ["image_filter.js"]
+    }
+  ],
+
   "permissions": [
     "activeTab"
   ]
