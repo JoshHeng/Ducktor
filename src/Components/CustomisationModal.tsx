@@ -104,7 +104,7 @@ export default function CustomisationModal() {
             </div>
 
             <div className="input">
-                <label htmlFor="TextFilterStrings">Image Filter - Alt Text Blacklist</label>
+                <label htmlFor="TextFilterStrings">Image Filter - phrase to block per line</label>
                 <textarea className="textBox" rows={5} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack" onBlur={onTextFilterFinish}></textarea>
             </div>
 
