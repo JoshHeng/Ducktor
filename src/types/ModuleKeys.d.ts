@@ -1,0 +1,1 @@
+export type ModuleKey = "module.imageFilter" | "module.breakReminder" | "module.hideAndSeek" | "module.motivation";

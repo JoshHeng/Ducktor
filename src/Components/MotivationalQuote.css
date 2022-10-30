@@ -1,0 +1,17 @@
+.motivationalQuote {
+    position: absolute;
+    left: 180px;
+    right: 15px;
+    top: 0;
+    bottom: 225px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.motivationalQuote p {
+    margin: 1rem;
+    color: black;
+    font-size: 1.2em;
+}

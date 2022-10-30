@@ -6,6 +6,7 @@ import DuckCustomisation from './DuckCustomisation';
 import CustomisationModal from './CustomisationModal';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import {initialiseValues, selectAwake, selectDuckName, selectDuckType, toggleAwake} from '../redux/settingsSlice';
+import MotivationalQuote from "./MotivationalQuote";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -17,18 +18,34 @@ function App() {
     useEffect(() => {
         let mounted = true;
 
-        chrome?.storage?.sync.get(['settings.awake', 'settings.duckType', 'settings.name'], (values: any) => {
+        chrome?.storage?.sync.get([
+            'settings.awake',
+            'settings.duckType',
+            'settings.name',
+            'settings.enabledModules.module.imageFilter',
+            'settings.enabledModules.module.breakReminder',
+            'settings.enabledModules.module.hideAndSeek',
+            'settings.enabledModules.module.motivation',
+            'settings.breakInterval',
+        ], (values: any) => {
             if (mounted && values) {
                 dispatch(initialiseValues({
                     awake: values['settings.awake'],
                     duckType: values['settings.duckType'],
                     duckName: values['settings.name'],
+                    enabledModules: {
+                        'module.imageFilter': values['settings.enabledModules.module.imageFilter'],
+                        'module.breakReminder': values['settings.enabledModules.module.breakReminder'],
+                        'module.hideAndSeek': values['settings.enabledModules.module.hideAndSeek'],
+                        'module.motivation': values['settings.enabledModules.module.motivation']
+                    },
+                    breakInterval: values['settings.breakInterval'],
                 }));
             }
         });
 
         return () => { mounted = false; }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className={`app ${awake ? 'awake' : 'asleep'}`} style={{ backgroundImage: awake ? 'url("/ducks/BackgroundDay.png")' : 'url("/ducks/BackgroundNight.png")'}}>
@@ -39,9 +56,10 @@ function App() {
 
             </header>
             <div className="duckImage">
-                <img src="/ducks/DuckShadow.png" alt="Duck Shadow" />
+                <img src="/originals/ducks/DuckShadow.png" alt="Duck Shadow" />
                 <img src={`/ducks/${awake ? 'Duck.gif' : 'DuckSleep.gif'}`} alt="Duck" />
                 { duckImages[duckType].hat && <img src={`/hats/${duckImages[duckType].hat}`} alt="Duck Hat" /> }
+                <MotivationalQuote />
             </div>
 
             <DuckCustomisation />
