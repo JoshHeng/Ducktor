@@ -45,6 +45,9 @@ export default function CustomisationModal() {
         setTextFilterStrings(event.target.value);
         chrome?.storage?.sync.set({ 'TextFilterStrings': event.target.value }).then(() => {});
     }
+    const onTextFilterFinish = () => {
+        if (enabledModules['module.imageFilter']) setTimeout(() => chrome?.tabs?.reload(), 200);
+    }
     const onDuckNameChange = (event: any) => {
         dispatch(setName(event.target.value));
     }
@@ -91,7 +94,7 @@ export default function CustomisationModal() {
 
             <div className="input">
                 <label htmlFor="TextFilterStrings">Image Filter - Alt Text Blacklist</label>
-                <textarea className="textBox" rows={6} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack"></textarea>
+                <textarea className="textBox" rows={6} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack" onBlur={onTextFilterFinish}></textarea>
             </div>
         </div>
     )
