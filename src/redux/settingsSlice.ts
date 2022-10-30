@@ -10,6 +10,7 @@ interface SettingsState {
     enabledModules: {
         [moduleKey in ModuleKey]: boolean;
     };
+    breakInterval: number;
 }
 
 const initialState: SettingsState = {
@@ -22,6 +23,7 @@ const initialState: SettingsState = {
         'module.hideAndSeek': true,
         'module.motivation': true,
     },
+    breakInterval: 60,
 }
 
 export const settingsSlice = createSlice({
@@ -65,6 +67,13 @@ export const settingsSlice = createSlice({
 
             state.enabledModules[action.payload] = !state.enabledModules[action.payload];
         },
+        setBreakInterval: (state, action: PayloadAction<number>) => {
+            chrome?.storage?.sync.set({
+                'settings.breakInterval': action.payload,
+            }).then(() => {});
+
+            state.breakInterval = action.payload;
+        },
         initialiseValues: (state, action: PayloadAction<SettingsState>) => {
             state.awake = action.payload.awake === undefined ? true : action.payload.awake;
             state.duckType = action.payload.duckType || 'none';
@@ -75,14 +84,16 @@ export const settingsSlice = createSlice({
                 'module.hideAndSeek': action.payload.enabledModules["module.hideAndSeek"] === undefined ? true : action.payload.enabledModules["module.hideAndSeek"],
                 'module.motivation': action.payload.enabledModules["module.motivation"] === undefined ? true : action.payload.enabledModules["module.motivation"],
             };
+            state.breakInterval = action.payload.breakInterval || 60;
         },
     },
 });
 
-export const { toggleAwake, setDuckType, initialiseValues, setName, toggleModuleEnabled } = settingsSlice.actions;
+export const { toggleAwake, setDuckType, initialiseValues, setName, setBreakInterval, toggleModuleEnabled } = settingsSlice.actions;
 export const selectAwake = (state: RootState) => state.settings.awake;
 export const selectDuckType = (state: RootState) => state.settings.duckType;
 export const selectDuckName = (state: RootState) => state.settings.duckName;
 export const selectEnabledModules = (state: RootState) => state.settings.enabledModules;
+export const selectBreakInterval = (state: RootState) => state.settings.breakInterval;
 
 export default settingsSlice.reducer;

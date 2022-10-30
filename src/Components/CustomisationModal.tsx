@@ -1,7 +1,14 @@
 import './CustomisationModal.css';
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {selectDuckName, selectEnabledModules, setName, toggleModuleEnabled} from "../redux/settingsSlice";
+import {
+    selectBreakInterval,
+    selectDuckName,
+    selectEnabledModules,
+    setBreakInterval,
+    setName,
+    toggleModuleEnabled
+} from "../redux/settingsSlice";
 import {ModuleKey} from "../types/ModuleKeys";
 
 type Module = {
@@ -39,6 +46,7 @@ export default function CustomisationModal() {
     const dispatch = useAppDispatch();
     const duckName = useAppSelector(selectDuckName);
     const enabledModules = useAppSelector(selectEnabledModules);
+    const breakInterval = useAppSelector(selectBreakInterval);
 
     const [ TextFilterStrings, setTextFilterStrings ] = useState('');
     const onTextFilterChange = (event: any) => {
@@ -50,6 +58,10 @@ export default function CustomisationModal() {
     }
     const onDuckNameChange = (event: any) => {
         dispatch(setName(event.target.value));
+    }
+    const onBreakReminderIntervalChange = (event: any) => {
+        console.log(event);
+        dispatch(setBreakInterval(event.target.value));
     }
 
     useEffect(() => {
@@ -91,10 +103,14 @@ export default function CustomisationModal() {
                 </div>
             </div>
 
-
             <div className="input">
                 <label htmlFor="TextFilterStrings">Image Filter - Alt Text Blacklist</label>
-                <textarea className="textBox" rows={6} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack" onBlur={onTextFilterFinish}></textarea>
+                <textarea className="textBox" rows={5} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack" onBlur={onTextFilterFinish}></textarea>
+            </div>
+
+            <div className="input">
+                <label htmlFor="breakReminderInterval">Break Reminder Interval (Minutes)</label>
+                <input type="number" required min={0} max={600} id="breakReminderInterval" onChange={onBreakReminderIntervalChange} value={breakInterval} placeholder="60"></input>
             </div>
         </div>
     )

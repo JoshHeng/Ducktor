@@ -25,7 +25,8 @@ function App() {
             'settings.enabledModules.module.imageFilter',
             'settings.enabledModules.module.breakReminder',
             'settings.enabledModules.module.hideAndSeek',
-            'settings.enabledModules.module.motivation'
+            'settings.enabledModules.module.motivation',
+            'settings.breakInterval',
         ], (values: any) => {
             if (mounted && values) {
                 dispatch(initialiseValues({
@@ -37,7 +38,8 @@ function App() {
                         'module.breakReminder': values['settings.enabledModules.module.breakReminder'],
                         'module.hideAndSeek': values['settings.enabledModules.module.hideAndSeek'],
                         'module.motivation': values['settings.enabledModules.module.motivation']
-                    }
+                    },
+                    breakInterval: values['settings.breakInterval'],
                 }));
             }
         });
