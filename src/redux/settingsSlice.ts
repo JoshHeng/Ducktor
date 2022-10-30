@@ -27,10 +27,14 @@ const initialState: SettingsState = {
 }
 
 function setAlarm(interval: number) {
+    if (!interval) return;
+
     chrome?.alarms.create("screenTimer", {delayInMinutes: interval, periodInMinutes: interval} );
 }
 
 function setAlarmWithooutInterval() {
+    console.log('setting');
+
     chrome?.storage?.sync.get(['settings.breakInterval'], (results: any) => {
        setAlarm(Number(results['settings.breakInterval']));
     });
@@ -54,18 +58,13 @@ export const settingsSlice = createSlice({
 
             if (state.enabledModules['module.imageFilter'] !== false) setTimeout(() => chrome?.tabs?.reload(), 200);
             if (state.enabledModules['module.breakReminder']) {
-                chrome?.storage?.sync?.get(['settings.enabledModules.module.breakReminder'], (results: any) => {
-                    console.log(results);
-                    if (results['settings.enabledModules.module.breakReminder']) {
-                        if (state.awake) {
-                            // If goes to sleep
-                            clearAlarm();
-                        }
-                        else {
-                            setAlarmWithooutInterval();
-                        }
-                    }
-                });
+                if (state.awake) {
+                    // If goes to sleep
+                    clearAlarm();
+                }
+                else {
+                    setAlarmWithooutInterval();
+                }
             }
 
             chrome?.storage?.sync.set({
@@ -96,18 +95,15 @@ export const settingsSlice = createSlice({
             if (action.payload === 'module.imageFilter' || action.payload === 'module.hideAndSeek') setTimeout(() => chrome?.tabs?.reload(), 200);
 
             if (action.payload === 'module.breakReminder') {
-                chrome?.storage?.sync?.get(['settings.awake'], (results: any) => {
-                    console.log(results);
-                    if (results['settings.awake']) {
-                        if (state.enabledModules[action.payload]) {
-                            // If goes to sleep
-                            clearAlarm();
-                        }
-                        else {
-                            setAlarmWithooutInterval();
-                        }
+                if (state.awake) {
+                    if (state.enabledModules[action.payload]) {
+                        // If goes to sleep
+                        clearAlarm();
                     }
-                });
+                    else {
+                        setAlarmWithooutInterval();
+                    }
+                }
             }
 
 
@@ -118,13 +114,9 @@ export const settingsSlice = createSlice({
                 'settings.breakInterval': action.payload
             }).then(() => {});
 
-
-
-            chrome?.storage?.sync?.get(['settings.awake', 'settings.enabledModules.module.breakReminder'], (results: any) => {
-                if (results['settings.awake'] && results['settings.enabledModules.module.breakReminder']) {
-                    setAlarm(Number(action.payload));
-                }
-            });
+            if (state.awake && state.enabledModules['module.breakReminder']) {
+                setAlarm(Number(action.payload));
+            }
 
             state.breakInterval = action.payload;
         },
