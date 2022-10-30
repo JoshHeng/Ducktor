@@ -43,7 +43,7 @@ function App() {
         });
 
         return () => { mounted = false; }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className={`app ${awake ? 'awake' : 'asleep'}`} style={{ backgroundImage: awake ? 'url("/ducks/BackgroundDay.png")' : 'url("/ducks/BackgroundNight.png")'}}>

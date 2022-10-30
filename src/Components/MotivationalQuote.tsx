@@ -17,7 +17,7 @@ export default function MotivationalQuote() {
         }
 
        return null;
-    }, [enabledModules['module.motivation'], awake]);
+    }, [enabledModules, awake]);
 
     if (!quote) return null;
 
