@@ -2,6 +2,7 @@ import './CustomisationModal.css';
 import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
 import {selectDuckName, setName} from "../redux/settingsSlice";
+import TimerConfigure from './ScreenTimer';
 
 export default function CustomisationModal() {
     const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ export default function CustomisationModal() {
                 <label htmlFor="TextFilterStrings">Image Text Filter</label>
                 <textarea className="textBox" rows={6} id="TextFilterStrings" onChange={onTextFilterChange} value={TextFilterStrings} placeholder="Quack"></textarea>
             </div>
+            <TimerConfigure />
         </div>
     )
 }

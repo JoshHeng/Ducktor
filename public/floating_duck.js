@@ -128,6 +128,8 @@ function createFloatingDuck(message) {
     div.style.cursor = "pointer";
     div.style.zIndex = "10";
 
+    // TODO: Set styling for message
+    // Otherwise it'll inherit the text styling for the page it's on
     var msgDiv = document.createElement('div');
     msgDiv.innerHTML = message;
     msgDiv.setAttribute("id", msgDivId);
