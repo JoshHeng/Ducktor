@@ -16,21 +16,23 @@ function alt_filter(bad_words, duckType) {
     for (let i = 0, len = allImages.length; i < len; ++i) {
         if (allImages[i].alt !== "" || allImages[i].src !== "" || allImages[i].srcset !== "") {
             for (let j = 0, length = bad_words.length; j < length; ++j) {
-                if (allImages[i].alt.toLowerCase().includes(bad_words[j])) {
+                let word = bad_words[j].toLowerCase()
+
+                if (allImages[i].alt.toLowerCase().includes(word)) {
                     allImages[i].alt = "";
                     allImages[i].src = imgURL;
                     allImages[i].srcset = "";
                     break;
                 }
 
-                else if (allImages[i].src.toLowerCase().includes(bad_words[j])) {
+                else if (allImages[i].src.toLowerCase().includes(word)) {
                     allImages[i].alt = "";
                     allImages[i].src = imgURL;
                     allImages[i].srcset = "";
                     break;
                 }
 
-                else if (allImages[i].srcset.toLowerCase().includes(bad_words[j])) {
+                else if (allImages[i].srcset.toLowerCase().includes(word)) {
                     allImages[i].alt = "";
                     allImages[i].src = imgURL;
                     allImages[i].srcset = "";
