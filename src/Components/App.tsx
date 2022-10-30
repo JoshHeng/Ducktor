@@ -6,6 +6,7 @@ import DuckCustomisation from './DuckCustomisation';
 import CustomisationModal from './CustomisationModal';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import {initialiseValues, selectAwake, selectDuckName, selectDuckType, toggleAwake} from '../redux/settingsSlice';
+import MotivationalQuote from "./MotivationalQuote";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -56,6 +57,7 @@ function App() {
                 <img src="/ducks/DuckShadow.png" alt="Duck Shadow" />
                 <img src={`/ducks/${awake ? 'Duck.gif' : 'DuckSleep.gif'}`} alt="Duck" />
                 { duckImages[duckType].hat && <img src={`/hats/${duckImages[duckType].hat}`} alt="Duck Hat" /> }
+                <MotivationalQuote />
             </div>
 
             <DuckCustomisation />
