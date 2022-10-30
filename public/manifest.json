@@ -23,6 +23,18 @@
       "matches": ["<all_urls>"],
       "run_at": "document_idle", 
       "js": ["image_filter.js"]
+    },
+    {
+      "matches": ["https://www.google.com/search?q=*"],
+      "run_at": "document_idle",
+      "js": ["hideAndSeek.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["*.png"],
+      "matches": [ "https://www.google.com/*" ]
     }
   ],
 

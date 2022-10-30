@@ -1,3 +1,5 @@
+const duckTypes = ['Hacker', 'Halo', 'Mario', 'Pirate', 'Pumpkin', 'Witch', ''];
+
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.action === 'setAwake') {
         if (msg.value) {
@@ -5,5 +7,8 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         } else {
             chrome.action.setIcon({ path: '/ducks/DuckOff.png' });
         }
+    }
+    else if (msg.action === 'getDucks') {
+        sendResponse(duckTypes.map(duckType => chrome.runtime.getURL(`/ducks/Duck${duckType}.png`)));
     }
 });

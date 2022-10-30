@@ -61,7 +61,7 @@ export const settingsSlice = createSlice({
             toSet['settings.enabledModules.' + action.payload] = !state.enabledModules[action.payload];
             chrome?.storage?.sync.set(toSet).then(() => {});
 
-            if (action.payload === 'module.imageFilter') setTimeout(() => chrome?.tabs?.reload(), 200);
+            if (action.payload === 'module.imageFilter' || action.payload === 'module.hideAndSeek') setTimeout(() => chrome?.tabs?.reload(), 200);
 
             state.enabledModules[action.payload] = !state.enabledModules[action.payload];
         },
