@@ -34,7 +34,7 @@ export const settingsSlice = createSlice({
                 value: !state.awake,
             }).then(() => {});
 
-            setTimeout(() => chrome?.tabs?.reload(), 200);
+            if (state.enabledModules['module.imageFilter'] !== false) setTimeout(() => chrome?.tabs?.reload(), 200);
 
             chrome?.storage?.sync.set({
                 'settings.awake': !state.awake,
@@ -61,7 +61,7 @@ export const settingsSlice = createSlice({
             toSet['settings.enabledModules.' + action.payload] = !state.enabledModules[action.payload];
             chrome?.storage?.sync.set(toSet).then(() => {});
 
-            setTimeout(() => chrome?.tabs?.reload(), 200);
+            if (action.payload === 'module.imageFilter') setTimeout(() => chrome?.tabs?.reload(), 200);
 
             state.enabledModules[action.payload] = !state.enabledModules[action.payload];
         },
