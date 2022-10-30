@@ -46,6 +46,15 @@ function App() {
 
             <DuckCustomisation />
             { showCustomisationModal && <CustomisationModal /> }
+
+            <button onClick={() => {
+                chrome.storage.sync.set({'msg.floatDuck': 'test message here'}, function() {
+                });
+            }}>Set Message</button>
+            <button onClick={() => {
+                chrome.storage.sync.set({'msg.floatDuck': ''}, function() {
+                });
+            }}>Remove Message</button>
         </div>
     );
 }

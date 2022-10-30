@@ -1,15 +1,50 @@
 const duckHatId = "duckHat";
+const msgDivId = "msgDiv";
+
+// Listen for changes to storage
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    // Update the hat
+    setHat();
+
+    // Check if the duck should be visible or not
+    setVisibility();
+});
 
 function dismiss() {
     console.log("Dismiss");
 
     var duckDiv = document.getElementById("floatingDuck");
-    duckDiv.setAttribute("visibility", "hidden");
+    duckDiv.style.display = "none";
+
+    // Clear the message
+    chrome.storage.sync.set({'msg.floatDuck': ''}, function() {
+        console.log('Cleared floatDuck message');
+    });
 }
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-    setHat();
-});
+// Checks if there are any messages
+// If there are, then show the duck, otherwise, keep it hidden
+function setVisibility() {
+    chrome.storage.sync.get(['msg.floatDuck'], function(value) {
+        console.log("msg.floatDuck: " + value);
+        console.log(value['msg.floatDuck']);
+        var msg = value['msg.floatDuck'];
+        var msgDiv = document.getElementById(msgDivId);
+
+        var duckDiv = document.getElementById("floatingDuck");
+
+        if (msg !== '' && msg !== undefined) {
+            msgDiv.innerHTML = msg;
+            duckDiv.style.display = "";
+            console.log("Show duck");
+        }
+        else {
+            msgDiv.innerHTML = "";
+            duckDiv.style.display = "none";
+            console.log("Hide duck");
+        }
+    });
+}
 
 function setHat() {
     chrome.storage.sync.get(['settings.awake', 'settings.duckType', 'settings.name'], function(values) {
@@ -18,7 +53,7 @@ function setHat() {
 
         var duckHat = document.getElementById(duckHatId);
 
-        if (duckType !== "none") {            
+        if (duckType !== "none" && duckType !== undefined) {            
             // Convert from duck hat name to filename
             // Filename must be in format: Hatname.png (where it starts with a capital letter)
             // https://stackoverflow.com/a/1026087
@@ -91,12 +126,15 @@ function createFloatingDuck(message) {
     div.style.width = "400px";
     div.style.margin = "0";
     div.style.cursor = "pointer";
+    div.style.zIndex = "10";
 
-    var msgDiv = document.createElement( 'div' );
+    var msgDiv = document.createElement('div');
     msgDiv.innerHTML = message;
+    msgDiv.setAttribute("id", msgDivId);
     msgDiv.style.left = "25px";
     msgDiv.style.top = "15px";
     msgDiv.style.position = "absolute";
+    msgDiv.style.color = "#1a1a1a"
 
     div.appendChild(msgDiv);
     div.setAttribute("id", "floatingDuck");
@@ -109,3 +147,4 @@ function createFloatingDuck(message) {
 var div = createFloatingDuck("Test message!");
 document.body.appendChild(div);
 setHat();
+setVisibility();
