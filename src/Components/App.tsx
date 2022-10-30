@@ -17,12 +17,26 @@ function App() {
     useEffect(() => {
         let mounted = true;
 
-        chrome?.storage?.sync.get(['settings.awake', 'settings.duckType', 'settings.name'], (values: any) => {
+        chrome?.storage?.sync.get([
+            'settings.awake',
+            'settings.duckType',
+            'settings.name',
+            'settings.enabledModules.module.imageFilter',
+            'settings.enabledModules.module.breakReminder',
+            'settings.enabledModules.module.hideAndSeek',
+            'settings.enabledModules.module.motivation'
+        ], (values: any) => {
             if (mounted && values) {
                 dispatch(initialiseValues({
                     awake: values['settings.awake'],
                     duckType: values['settings.duckType'],
                     duckName: values['settings.name'],
+                    enabledModules: {
+                        'module.imageFilter': values['settings.enabledModules.module.imageFilter'],
+                        'module.breakReminder': values['settings.enabledModules.module.breakReminder'],
+                        'module.hideAndSeek': values['settings.enabledModules.module.hideAndSeek'],
+                        'module.motivation': values['settings.enabledModules.module.motivation']
+                    }
                 }));
             }
         });
