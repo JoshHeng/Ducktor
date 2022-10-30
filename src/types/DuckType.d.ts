@@ -1,1 +1,1 @@
-export type DuckType = "none" | "hacker" | "pirate" | "pumpkin" | "witch" | "mario" | "angel";
+export type DuckType = "none" | "hacker" | "pirate" | "pumpkin" | "witch" | "mario" | "halo";
