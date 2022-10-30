@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "version": "0.1",
+  "version": "1.0",
 
   "short_name": "❤ ️Ducktor",
-  "name": "❤ ️Ducktor",
-  "description": "Quack quack",
+  "name": "❤ Ducktor - Your Adorable Web Companion",
+  "description": "Sometimes, the internet gets you down.",
   "icons": {
     "128": "ducks/DuckOn.png"
   },
