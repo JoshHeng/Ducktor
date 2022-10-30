@@ -136,7 +136,9 @@ function createFloatingDuck(message) {
     msgDiv.style.left = "25px";
     msgDiv.style.top = "15px";
     msgDiv.style.position = "absolute";
-    msgDiv.style.color = "#1a1a1a"
+    msgDiv.style.color = "#1a1a1a";
+    msgDiv.style.fontSize = "14px";
+    msgDiv.style.fontFamily = "sans-serif";
 
     div.appendChild(msgDiv);
     div.setAttribute("id", "floatingDuck");

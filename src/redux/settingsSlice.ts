@@ -69,8 +69,15 @@ export const settingsSlice = createSlice({
         },
         setBreakInterval: (state, action: PayloadAction<number>) => {
             chrome?.storage?.sync.set({
-                'settings.breakInterval': action.payload,
+                'settings.breakInterval': action.payload
             }).then(() => {});
+
+            chrome?.alarms.create("screenTimer", {delayInMinutes: Number(action.payload), periodInMinutes: Number(action.payload)} );
+
+            chrome?.alarms.onAlarm.addListener(function( alarm ) {
+                console.log("Alarm triggered!");
+                chrome?.storage?.sync.set({'msg.floatDuck': 'Plz take break :) 🦆'}, function() { });
+            });
 
             state.breakInterval = action.payload;
         },
