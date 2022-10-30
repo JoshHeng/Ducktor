@@ -9,11 +9,11 @@
     color: black;
 }
 
-.input {
+.input, .enableModulesWrapper {
     margin-bottom: 1.2rem;
 }
 
-.input label {
+.input label, .enableModulesWrapper > p {
     display: block;
     margin-bottom: 0.2rem;
 }
@@ -36,4 +36,38 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.enableModules {
+    display: flex;
+    justify-content: center;
+}
+
+.enableModules div {
+    width: 5rem;
+    margin: 0.5rem 0.3rem 0;
+}
+
+.enableModules button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.enableModules button:hover {
+    transform: scale(1.05);
+}
+
+.enableModules img {
+    width: 4rem;
+}
+
+.enableModules p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.enableModules button.greyscale {
+    filter: grayscale(1);
 }

@@ -5,7 +5,9 @@
   "short_name": "❤ ️Ducktor",
   "name": "❤ ️Ducktor",
   "description": "Quack quack",
-
+  "icons": {
+    "128": "ducks/DuckOn.png"
+  },
 
   "action": {
     "default_popup": "index.html",
@@ -25,6 +27,7 @@
   ],
 
   "permissions": [
+    "tabs",
     "activeTab",
     "storage"
   ]
