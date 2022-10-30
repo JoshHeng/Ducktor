@@ -48,6 +48,8 @@ chrome.storage.sync.get(['settings.awake', 'settings.enabledModules.module.hideA
     chrome.runtime.sendMessage({ action: 'getDucks' }, function (ducks) {
         if (!ducks) return;
 
+        if (!document.getElementsByClassName('islrc')[0]) return;
+
         for (const result of document.getElementsByClassName('islrc')[0].childNodes) {
             if (result.tagName === 'DIV') {
                 if (Math.floor(Math.random() * 2) === 0) {
@@ -57,6 +59,4 @@ chrome.storage.sync.get(['settings.awake', 'settings.enabledModules.module.hideA
             }
         }
     });
-
-
 });

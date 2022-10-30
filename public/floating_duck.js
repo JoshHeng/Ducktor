@@ -11,23 +11,17 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 function dismiss() {
-    console.log("Dismiss");
-
     var duckDiv = document.getElementById("floatingDuck");
     duckDiv.style.display = "none";
 
     // Clear the message
-    chrome.storage.sync.set({'msg.floatDuck': ''}, function() {
-        console.log('Cleared floatDuck message');
-    });
+    chrome.storage.sync.set({'msg.floatDuck': ''}, function() {});
 }
 
 // Checks if there are any messages
 // If there are, then show the duck, otherwise, keep it hidden
 function setVisibility() {
     chrome.storage.sync.get(['msg.floatDuck'], function(value) {
-        console.log("msg.floatDuck: " + value);
-        console.log(value['msg.floatDuck']);
         var msg = value['msg.floatDuck'];
         var msgDiv = document.getElementById(msgDivId);
 
@@ -36,12 +30,10 @@ function setVisibility() {
         if (msg !== '' && msg !== undefined) {
             msgDiv.innerHTML = msg;
             duckDiv.style.display = "";
-            console.log("Show duck");
         }
         else {
             msgDiv.innerHTML = "";
             duckDiv.style.display = "none";
-            console.log("Hide duck");
         }
     });
 }
@@ -49,7 +41,6 @@ function setVisibility() {
 function setHat() {
     chrome.storage.sync.get(['settings.awake', 'settings.duckType', 'settings.name'], function(values) {
         var duckType = values['settings.duckType'];
-        console.log(duckType);
 
         var duckHat = document.getElementById(duckHatId);
 
@@ -59,11 +50,9 @@ function setHat() {
             // https://stackoverflow.com/a/1026087
             duckHat.setAttribute("src", chrome.runtime.getURL("/hats/" + duckType.charAt(0).toUpperCase() + duckType.slice(1) + ".png"));
             duckHat.style.visibility = "visible";
-            console.log("Hat visible");
         }        
         else {
             duckHat.style.visibility = "hidden";
-            console.log("Hat hidden");
         }
     });
 }

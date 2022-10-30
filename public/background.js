@@ -12,3 +12,8 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         sendResponse(duckTypes.map(duckType => chrome.runtime.getURL(`/ducks/Duck${duckType}.png`)));
     }
 });
+
+chrome.alarms.onAlarm.addListener(function( alarm ) {
+    console.log("Alarm triggered!");
+    chrome.storage.sync.set({'msg.floatDuck': 'Plz take break :) 🦆'}, function() { });
+});

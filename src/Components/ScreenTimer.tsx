@@ -6,11 +6,6 @@ function setAlarm() {
         //  A data saved callback omg so fancy
     });
 
-    chrome.alarms.onAlarm.addListener(function( alarm ) {
-        console.log("Alarm triggered!");
-        chrome.storage.sync.set({'msg.floatDuck': 'Plz take break :) 🦆'}, function() { });
-    });
-
     console.log("Alarm set");
 }
 
