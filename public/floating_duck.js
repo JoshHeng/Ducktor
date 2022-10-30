@@ -1,3 +1,5 @@
+const duckHatId = "duckHat";
+
 function dismiss() {
     console.log("Dismiss");
 
@@ -6,12 +8,43 @@ function dismiss() {
 }
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    document.body.style.backgroundColor = "green";
+    setHat();
 });
+
+function setHat() {
+    chrome.storage.sync.get(['settings.awake', 'settings.duckType', 'settings.name'], function(values) {
+        var duckType = values['settings.duckType'];
+        console.log(duckType);
+
+        var duckHat = document.getElementById(duckHatId);
+
+        if (duckType !== "none") {            
+            // Convert from duck hat name to filename
+            // Filename must be in format: Hatname.png (where it starts with a capital letter)
+            // https://stackoverflow.com/a/1026087
+            duckHat.setAttribute("src", chrome.runtime.getURL("/hats/" + duckType.charAt(0).toUpperCase() + duckType.slice(1) + ".png"));
+            duckHat.style.visibility = "visible";
+            console.log("Hat visible");
+        }        
+        else {
+            duckHat.style.visibility = "hidden";
+            console.log("Hat hidden");
+        }
+    });
+}
 
 
 function createFloatingDuck(message) {
-    var div = document.createElement( 'div' );
+    var div = document.createElement('div');
+
+    var hat = document.createElement('img');
+    //hat.setAttribute("src", chrome.runtime.getURL(""));
+    hat.setAttribute("id", duckHatId);
+    hat.style.visibility = "hidden";
+    hat.style.position = "absolute";
+    hat.style.width = "200px"
+    hat.style.right = 0;
+    hat.style.bottom = 0;
 
     var duck = document.createElement('img');
     duck.setAttribute("src", chrome.runtime.getURL("/ducks/Duck.gif"));
@@ -49,6 +82,7 @@ function createFloatingDuck(message) {
     div.appendChild(speechBubble);
     div.appendChild(duckShadow);
     div.appendChild(duck);
+    div.appendChild(hat);
 
     div.style.position = "fixed";
     div.style.bottom = 0;
@@ -74,3 +108,4 @@ function createFloatingDuck(message) {
 
 var div = createFloatingDuck("Test message!");
 document.body.appendChild(div);
+setHat();

@@ -28,7 +28,7 @@
 
   "web_accessible_resources": [{
     "matches": ["<all_urls>"],
-    "resources": ["ducks/*", "assets/*"]
+    "resources": ["ducks/*", "assets/*", "hats/*"]
 }],
 
   "permissions": [
