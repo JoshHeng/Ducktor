@@ -64,6 +64,7 @@ function App() {
 
             <DuckCustomisation />
             { showCustomisationModal && <CustomisationModal /> }
+
         </div>
     );
 }

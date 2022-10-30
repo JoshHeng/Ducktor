@@ -9,6 +9,7 @@
     "128": "ducks/DuckOn.png"
   },
 
+
   "action": {
     "default_popup": "index.html",
     "default_icon": "ducks/DuckOn.png"
@@ -22,7 +23,7 @@
     {
       "matches": ["<all_urls>"],
       "run_at": "document_idle", 
-      "js": ["image_filter.js"]
+      "js": ["image_filter.js", "floating_duck.js"]
     },
     {
       "matches": ["https://www.google.com/search?q=*"],
@@ -33,7 +34,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["*.png"],
+      "resources": ["*.png", "*.gif"],
       "matches": [ "<all_urls>" ]
     }
   ],
@@ -41,6 +42,7 @@
   "permissions": [
     "tabs",
     "activeTab",
-    "storage"
+    "storage",
+    "alarms"
   ]
 }

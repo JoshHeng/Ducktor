@@ -19,11 +19,31 @@ const initialState: SettingsState = {
     duckName: 'Ducky',
     enabledModules: {
         'module.imageFilter': true,
-        'module.breakReminder': true,
+        'module.breakReminder': false,
         'module.hideAndSeek': true,
         'module.motivation': true,
     },
     breakInterval: 60,
+}
+
+function setAlarm(interval: number) {
+    if (!interval) return;
+
+    chrome?.alarms.create("screenTimer", {delayInMinutes: interval, periodInMinutes: interval} );
+}
+
+function setAlarmWithooutInterval() {
+    console.log('setting');
+
+    chrome?.storage?.sync.get(['settings.breakInterval'], (results: any) => {
+       setAlarm(Number(results['settings.breakInterval']));
+    });
+}
+
+function clearAlarm() {
+    console.log('CLEARING');
+
+    chrome?.alarms?.clearAll();
 }
 
 export const settingsSlice = createSlice({
@@ -37,6 +57,15 @@ export const settingsSlice = createSlice({
             }).then(() => {});
 
             if (state.enabledModules['module.imageFilter'] !== false) setTimeout(() => chrome?.tabs?.reload(), 200);
+            if (state.enabledModules['module.breakReminder']) {
+                if (state.awake) {
+                    // If goes to sleep
+                    clearAlarm();
+                }
+                else {
+                    setAlarmWithooutInterval();
+                }
+            }
 
             chrome?.storage?.sync.set({
                 'settings.awake': !state.awake,
@@ -65,12 +94,29 @@ export const settingsSlice = createSlice({
 
             if (action.payload === 'module.imageFilter' || action.payload === 'module.hideAndSeek') setTimeout(() => chrome?.tabs?.reload(), 200);
 
+            if (action.payload === 'module.breakReminder') {
+                if (state.awake) {
+                    if (state.enabledModules[action.payload]) {
+                        // If goes to sleep
+                        clearAlarm();
+                    }
+                    else {
+                        setAlarmWithooutInterval();
+                    }
+                }
+            }
+
+
             state.enabledModules[action.payload] = !state.enabledModules[action.payload];
         },
         setBreakInterval: (state, action: PayloadAction<number>) => {
             chrome?.storage?.sync.set({
-                'settings.breakInterval': action.payload,
+                'settings.breakInterval': action.payload
             }).then(() => {});
+
+            if (state.awake && state.enabledModules['module.breakReminder']) {
+                setAlarm(Number(action.payload));
+            }
 
             state.breakInterval = action.payload;
         },
@@ -80,7 +126,7 @@ export const settingsSlice = createSlice({
             state.duckName = action.payload.duckName || 'Ducky';
             state.enabledModules = {
                 'module.imageFilter': action.payload.enabledModules["module.imageFilter"] === undefined ? true : action.payload.enabledModules["module.imageFilter"],
-                'module.breakReminder': action.payload.enabledModules["module.breakReminder"] === undefined ? true : action.payload.enabledModules["module.breakReminder"],
+                'module.breakReminder': action.payload.enabledModules["module.breakReminder"] === undefined ? false : action.payload.enabledModules["module.breakReminder"],
                 'module.hideAndSeek': action.payload.enabledModules["module.hideAndSeek"] === undefined ? true : action.payload.enabledModules["module.hideAndSeek"],
                 'module.motivation': action.payload.enabledModules["module.motivation"] === undefined ? true : action.payload.enabledModules["module.motivation"],
             };
