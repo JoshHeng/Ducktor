@@ -34,6 +34,8 @@ export const settingsSlice = createSlice({
                 value: !state.awake,
             }).then(() => {});
 
+            setTimeout(() => chrome?.tabs?.reload(), 200);
+
             chrome?.storage?.sync.set({
                 'settings.awake': !state.awake,
             }).then(() => {});
@@ -58,6 +60,8 @@ export const settingsSlice = createSlice({
             const toSet: any = {};
             toSet['settings.enabledModules.' + action.payload] = !state.enabledModules[action.payload];
             chrome?.storage?.sync.set(toSet).then(() => {});
+
+            setTimeout(() => chrome?.tabs?.reload(), 200);
 
             state.enabledModules[action.payload] = !state.enabledModules[action.payload];
         },
