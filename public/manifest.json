@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.0",
+  "version": "1.0.1",
 
   "short_name": "❤ ️Ducktor",
   "name": "❤ Ducktor - Your Adorable Web Companion",
@@ -40,8 +40,6 @@
   ],
 
   "permissions": [
-    "tabs",
-    "activeTab",
     "storage",
     "alarms"
   ]
