@@ -2,6 +2,9 @@
 
 > Ducktor blocks out bad image content and replaces it with... well... ducks. And more! From screen time reminders to duck dress-up, Ducktor sits in your tray, keeping you company as you surf the web. 🦆
 
+> Chrome Extension: https://chrome.google.com/webstore/detail/❤-ducktor-your-adorable-w/jibhdcmahhnhponpdcliamkcgbkgofjl
+> Devpost: https://devpost.com/software/ducktor-the-adorable-web-image-doctor
+
 ## Inspiration
 The news and internet often gets a lot of us down. We see things we don't wish to see, and we often know what kind of material we really want to block out. As a group, we decided that the best way to navigate the web safely is to replace these images using a blocked wordlist. But no one wants to stare at a bunch of broken image links, so what better, cuter thing to use than **a bunch of ducks?**
 
