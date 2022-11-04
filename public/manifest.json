@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "short_name": "❤ ️Ducktor",
   "name": "❤ Ducktor - Your Adorable Web Companion",
@@ -14,7 +14,6 @@
     "default_popup": "index.html",
     "default_icon": "ducks/DuckOn.png"
   },
-
   "background": {
     "service_worker": "background.js"
   },

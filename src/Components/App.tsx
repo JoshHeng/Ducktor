@@ -56,7 +56,7 @@ function App() {
 
             </header>
             <div className="duckImage">
-                <img src="/originals/ducks/DuckShadow.png" alt="Duck Shadow" />
+                <img src="/ducks/DuckShadow.png" alt="Duck Shadow" />
                 <img src={`/ducks/${awake ? 'Duck.gif' : 'DuckSleep.gif'}`} alt="Duck" />
                 { duckImages[duckType].hat && <img src={`/hats/${duckImages[duckType].hat}`} alt="Duck Hat" /> }
                 <MotivationalQuote />

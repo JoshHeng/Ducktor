@@ -23,7 +23,7 @@ export default function MotivationalQuote() {
 
     return (
         <>
-            <img src="/originals/ducks/SpeechBubble.png" alt="Speech Bubble" style={{ opacity: 0.8 }}/>
+            <img src="/ducks/SpeechBubble.png" alt="Speech Bubble" style={{ opacity: 0.8 }}/>
             <div className="motivationalQuote"><p>{quote}</p></div>
         </>
     );
